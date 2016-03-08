@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "welcome#index"
+  root "products#index"
 
   namespace :admin do
     resources :products
+    resources :users do
+      member do
+        post :to_admin
+        post :to_normal
+      end
+    end
   end
+
+  resources :products
+  resources :users
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
